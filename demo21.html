@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>react demo21</title>
+    <script src="../../js/react.js"></script>
+    <script src="../../js/react-dom.js"></script>
+    <script src="../../js/browser.min.js"></script>
+    <script src="../../js/jquery.min.js"></script>
+</head>
+<body>
+    <div id="example"></div>
+    <script type="text/babel">
+        function WarningBanner(props){
+            if(!props.warn){
+                return null;
+            }
+
+            return (
+                    <div className="warning">
+                        warning!
+                    </div>
+            );
+        }
+
+        class Page extends React.Component{
+            constructor(props){
+                super(props);
+                this.state={showWarning:true};
+                this.toggleClick=this.toggleClick.bind(this);
+            }
+
+            toggleClick(){
+                this.setState(prevState =>({
+                    showWarning:!prevState.showWarning
+                }));
+            }
+            render(){
+                return (
+                        <div>
+                            <WarningBanner warn={this.state.showWarning}/>
+                            <button onClick={this.toggleClick}>
+                                {this.state.showWarning ? 'Hide':'Show'}
+                            </button>
+                        </div>
+                );
+            }
+        }
+        ReactDOM.render(
+            <Page />,
+            document.getElementById('example')
+        )
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>react demo22</title>
+    <script src="../../js/react.js"></script>
+    <script src="../../js/react-dom.js"></script>
+    <script src="../../js/browser.min.js"></script>
+    <script src="../../js/jquery.min.js"></script>
+</head>
+<body>
+    <div id="example"></div>
+    <script type="text/babel">
+        function ListItem(props) {
+            return <li>{props.value}</li>;
+        }
+
+        function NumLists(props) {
+            const numbers=props.numbers;
+            const listItems = numbers.map(item=>
+                <ListItem key={item.toString()} value={item*2}/>
+            );
+            return (<ul>{listItems}</ul>);
+        }
+
+        const nums = [1,2,3,4,5];
+        ReactDOM.render(
+            <NumLists numbers={nums}/>,
+            document.getElementById('example')
+        )
+    </script>
+</body>
+</html>

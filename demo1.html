@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>react demo1</title>
+    <script src="../js/react.js"></script>
+    <script src="../js/react-dom.js"></script>
+    <script src="../js/browser.min.js"></script>
+</head>
+<body>
+    <div id="example"></div>
+    <script type="text/babel">
+        const element=<h1>hello,World!</h1>;
+
+        function Mailbox(props) {
+            const unreadMessages = props.unreadMessages;
+            return (
+                    <div>
+                        <h1>Hello!</h1>
+                        {unreadMessages.length>0 &&
+                        <h2>You have {unreadMessages.length} unread messages.</h2>
+                        }
+                    </div>
+            );
+        }
+
+        const messages=['z','y','x'];
+        ReactDOM.render(
+            <Mailbox unreadMessages={messages}/>,
+            document.getElementById('example')
+        );
+       /* ReactDOM.render(
+            <h1>Hello,World!</h1>,
+            document.getElementById('example')
+        );*/
+    </script>
+</body>
+</html>

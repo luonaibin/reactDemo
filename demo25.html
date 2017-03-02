@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>react demo25</title>
+    <script src="../../js/react.js"></script>
+    <script src="../../js/react-dom.js"></script>
+    <script src="../../js/browser.min.js"></script>
+    <script src="../../js/jquery.min.js"></script>
+</head>
+<body>
+    <div id="example"></div>
+    <script type="text/babel">
+        function BoilingVerdict(props) {
+            if(props.celsius>=100){
+                return <p>水沸腾！</p>;
+            }
+            return <p>水没沸腾！</p>;
+        }
+
+        class Calculator extends React.Component{
+            constructor(props){
+                super(props);
+                this.state={value:''};
+                this.change=this.change.bind(this);
+            }
+            change(e){
+                this.setState({value:e.target.value});
+            }
+            render(){
+                const value=this.state.value;
+                return (
+                    <fieldset>
+                        <legend>请输入温度：</legend>
+                        <input
+                            value={value}
+                            onChange={this.change}/>
+                        <BoilingVerdict celsius={parseFloat(value)}/>
+
+                    </fieldset>
+                );
+            }
+        }
+        ReactDOM.render(
+            <Calculator/>,
+            document.getElementById('example')
+        )
+    </script>
+</body>
+</html>

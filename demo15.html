@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>react demo4</title>
+    <script src="../../js/react.js"></script>
+    <script src="../../js/react-dom.js"></script>
+    <script src="../../js/browser.min.js"></script>
+    <script src="../../js/jquery.min.js"></script>
+</head>
+<body>
+    <div id="example"></div>
+    <script type="text/babel">
+        function Welcome(props) {
+            return <h1>hello,{props.name}</h1>;
+        }
+
+        /*class Welcome extends React.Component{
+            render(){
+                return <h1>hello,{this.props.name}</h1>;
+            }
+        }*/
+        const element=<Welcome name="John"/>;
+        function App() {
+            return (
+                    <div>
+                        <Welcome name="aaa"/>
+                        <Welcome name="bbb"/>
+                        <Welcome name="ccc"/>
+                    </div>
+            );
+        }
+
+        function Comment() {
+            return (
+                    <div className="Comment">
+                        /*<div className="UserInfo">
+                            /!*<img className="Avatar"
+                                src={props.author.avatarUrl}
+                                 alt={props.author.name}
+                            />*!/
+                            <Avatar user={props.author} />
+                            <div className="UserInfo-name">
+                                {props.author.name}
+                            </div>
+                        </div>*/
+                        <UserInfo user={prop.author}/>
+                        <div className="Comment-text">
+                            {props.text}
+                        </div>
+                        <div className="Comment-date">
+                            {formatDate(props.date)}
+                        </div>
+                    </div>
+            );
+        }
+
+        function Avatar(props) {
+            return (
+                <img className="Avatar"
+                    src={props.user.avatarUrl}
+                     alt={props.user.name}
+                />
+            );
+        }
+
+        function UserInfo(props) {
+            return (
+                    <div className="UserInfo">
+                        <Avatar user={props.user}/>
+                        <div className="UserInfo-name">
+                            {props.user.name}
+                        </div>
+                    </div>
+            );
+        }
+        
+        ReactDOM.render(
+            <App />,
+            document.getElementById('example')
+        );
+    </script>
+</body>
+</html>

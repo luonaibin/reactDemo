@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>react demo4</title>
+    <script src="../../js/react.js"></script>
+    <script src="../../js/react-dom.js"></script>
+    <script src="../../js/browser.min.js"></script>
+</head>
+<body>
+    <div id="example"></div>
+    <script type="text/babel">
+        var NodeList=React.createClass({
+            render:function () {
+                return (
+                    <ol>{
+                        React.Children.map(this.props.children,function (child) {
+                            return <li>Hello,{child}</li>;
+                        })
+                    }</ol>);
+            }
+        });
+
+        ReactDOM.render(
+            <NodeList>
+                <p>John</p>
+                <p>XXX</p>
+                <p>YYY</p>
+            </NodeList>,
+            document.body
+        );
+    </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>react demo4</title>
+    <script src="../../js/react.js"></script>
+    <script src="../../js/react-dom.js"></script>
+    <script src="../../js/browser.min.js"></script>
+    <script src="../../js/jquery.min.js"></script>
+</head>
+<body>
+    <div id="example"></div>
+    <script type="text/babel">
+        class Toggle extends React.Component{
+            constructor(props){
+                super(props);
+                this.state={isToggleOn:true};
+
+                this.handleClick=this.handleClick.bind(this);
+            }
+
+            handleClick(){
+                this.setState(prevState=>({
+                    isToggleOn:!prevState.isToggleOn
+                }));
+            }
+
+            render(){
+                return (
+                    <button onClick={this.handleClick}>
+                        {this.state.isToggleOn?'ON':'OFF'}
+                    </button>
+                );
+            }
+        }
+
+        class LoggingButton extends React.Component {
+            handleClick() {
+                console.log('this is:', this);
+            }
+
+            render() {
+                // 给事件传入一个剪头函数也可以绑定this
+                return (
+                        <button onClick={(e) => this.handleClick(e)}>
+                            Click me
+                        </button>
+                );
+            }
+        }
+        ReactDOM.render(
+            <LoggingButton/>,
+            document.getElementById('example')
+        );
+    </script>
+</body>
+</html>

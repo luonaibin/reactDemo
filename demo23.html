@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>react demo23</title>
+    <script src="../../js/react.js"></script>
+    <script src="../../js/react-dom.js"></script>
+    <script src="../../js/browser.min.js"></script>
+    <script src="../../js/jquery.min.js"></script>
+</head>
+<body>
+    <div id="example"></div>
+    <script type="text/babel">
+        function Blog(props) {
+            const sideBar=(
+                    <ul>
+                        {props.posts.map(post=>
+                                <li key={post.id}>{post.title}</li>
+                        )}
+                    </ul>
+            );
+            /*const content=props.posts.map(post=>
+                    <div key={post.id}>
+                        <h3>{post.title}</h3>
+                        <p>{post.content}</p>
+                    </div>
+            );*/
+
+            const content = props.posts.map(post=>
+                    <li key={post.id}>{post.title} {post.content}</li>
+            );
+            return (
+                    <div>
+                        {sideBar}
+                        <hr />
+                        {content}
+                    </div>
+            );
+        }
+
+        const posts=[
+            {id: 1, title: 'hello zhangyatao', content: 'you\'re so handsome!'},
+            {id: 2, title: 'hi jiangyanyun', content: 'you\'re so beautiful!'}
+        ];
+        ReactDOM.render(
+            <Blog posts={posts}/>,
+            document.getElementById('example')
+        )
+    </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>react demo24</title>
+    <script src="../../js/react.js"></script>
+    <script src="../../js/react-dom.js"></script>
+    <script src="../../js/browser.min.js"></script>
+    <script src="../../js/jquery.min.js"></script>
+</head>
+<body>
+    <div id="example"></div>
+    <script type="text/babel">
+        class NameForm extends React.Component{
+            constructor(props){
+                super(props);
+                this.state={value:''};
+                this.change=this.change.bind(this);
+                this.submit=this.submit.bind(this);
+            }
+            change(e){
+                this.setState({value:e.target.value.toUpperCase()});
+            }
+            submit(e){
+                e.preventDefault();
+                console.log('A name was submitted:',this.state.value);
+            }
+            render(){
+                return(
+                        <form onSubmit={this.submit}>
+                            <label>
+                                Name:
+                                <input type="text" value={this.state.value} onChange={this.change}/>
+                            </label>
+                            <input type="submit" value="Submit"/>
+                        </form>
+                );
+            }
+        }
+
+        class FlavorForm extends React.Component{
+            constructor(props){
+                super(props);
+                this.state={value:'coconut'};
+                this.change=this.change.bind(this);
+                this.submit=this.submit.bind(this);
+            }
+            change(e){
+                this.setState({value:e.target.value});
+            }
+            submit(e){
+                e.preventDefault();
+                console.log('您喜欢的是：',this.state.value);
+            }
+            render(){
+                return (
+                    <form onSubmit={this.submit}>
+                        <label>
+                            请选择：
+                            <select value={this.state.value} onchange={this.change}>
+                                <option value="fruit">fruit</option>
+                                <option value="lime">lime</option>
+                                <option value="coconut">coconut</option>
+                                <option value="mango">mango</option>
+                            </select>
+                        </label>
+                    </form>
+                );
+            }
+        }
+        ReactDOM.render(
+            <FlavorForm />,
+            document.getElementById('example')
+        )
+    </script>
+</body>
+</html>
