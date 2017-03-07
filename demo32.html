@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>react demo32</title>
+    <script src="../../js/react.js"></script>
+    <script src="../../js/react-dom.js"></script>
+    <script src="../../js/browser.min.js"></script>
+    <script src="../../js/jquery.min.js"></script>
+</head>
+<body>
+    <div id="example"></div>
+    <script type="text/babel">
+        class ListOfWords extends React.PureComponent {
+            render() {
+                return <div>{this.props.words.join(',')}</div>;
+            }
+        }
+
+        class WordAdder extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    words: ['marklar']
+                };
+                this.handleClick = this.handleClick.bind(this);
+            }
+
+            handleClick() {
+                this.setState(prevState => ({
+                    count: prevState.words.concat(['zhangyatao'])
+                }));
+            }
+
+            render() {
+                return (
+                        <div>
+                            <button onClick={this.handleClick} />
+                            <ListOfWords words={this.state.words} />
+                        </div>
+                );
+            }
+        }
+
+        ReactDOM.render(
+            <WordAdder/>,
+            document.getElementById('example')
+        )
+    </script>
+</body>
+</html>

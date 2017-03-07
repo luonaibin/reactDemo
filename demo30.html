@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>react demo30</title>
+    <script src="../../js/react.js"></script>
+    <script src="../../js/react-dom.js"></script>
+    <script src="../../js/browser.min.js"></script>
+    <script src="../../js/jquery.min.js"></script>
+</head>
+<body>
+    <div id="example"></div>
+    <script type="text/babel">
+        /*class CustomTextInput extends React.Component{
+            constructor(props){
+                super(props);
+                this.focus=this.focus.bind(this);
+            }
+            focus(){
+                this.textInput.focus();
+            }
+            render(){
+                return (
+                        <div>
+                            <input type="text" ref={input =>{this.textInput = input;}} />
+                            <input type="button" value="选中上方text input" onClick={this.focus}/>
+                        </div>
+                );
+            }
+        }*/
+
+        class AutoFocusTextInput extends React.Component {
+            componentDidMount() {
+                this.textInput.focus();
+            }
+            render() {
+                return (
+                        <CustomTextInput ref={input => {this.textInput = input; }} />
+                );
+            }
+        }
+
+        function CustomTextInput(props) {
+            // textInput must be declared here so the ref callback can refer to it
+            let textInput = null;
+
+            function handleClick() {
+                textInput.focus();
+            }
+
+            return (
+                    <div>
+                        <input
+                                type="text"
+                                ref={(input) => { textInput = input; }} />
+                        <input
+                                type="button"
+                                value="Focus the text input"
+                                onClick={handleClick}
+                        />
+                    </div>
+            );
+        }
+
+
+        ReactDOM.render(
+            <AutoFocusTextInput/>,
+            document.getElementById('example')
+        )
+    </script>
+</body>
+</html>
